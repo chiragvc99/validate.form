@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Review Page</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:500,800&display=swap" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+        <style media="screen">
+
+            :root {
+                --color: #C70039;
+                max-width: inherit;
+                font-size: 20px;
+            }
+
+            body, input, button {
+                font-family: 'Raleway', sans-serif;
+            }
+
+            body {
+                margin: 118px 320px 0;
+                margin-bottom: 0;
+                color: var(--color);
+                border-style: double;
+                padding-left:25rem;
+                padding-right: 25rem;
+                padding-top: 25rem;
+                padding-bottom: 30rem;
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            input {
+                letter-spacing: 2px;
+                color: inherit;
+                font-weight: 500;
+                font-size: 24px;
+                width: 400px;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                outline: none;
+                border: none;
+                border-bottom: 2px solid;
+                padding: 4px 10px;
+                margin: 42px 0;
+            }
+
+            ::placeholder {
+                color: inherit;
+                opacity: .6;
+            }
+
+            button {
+                font-size: 24px;
+                outline: none;
+                border: none;
+                border: 3px solid;
+                background-color: white;
+                color: var(--color);
+                padding: 6px 38px;
+                border-radius: 10000px;
+                transition: all .2s;
+            }
+
+            button:hover {
+                transform: scale(1.05);
+                background-color: var(--color);
+                color: white;
+                border-color: var(--color);
+            }
+
+            .rate {
+                float: left;
+                height: 46px;
+                padding: 0 10px;
+                position: fixed;
+            }
+            .rate:not(:checked) > input {
+                position:absolute;
+                top:-9999px;
+            }
+            .rate:not(:checked) > label {
+                float:right;
+                width:1em;
+                overflow:hidden;
+                white-space:nowrap;
+                cursor:pointer;
+                font-size:30px;
+                color:#ccc;
+            }
+            .rate:not(:checked) > label:before {
+                content: '★ ';
+            }
+            .rate > input:checked ~ label {
+                color: #ffc700;
+            }
+            .rate:not(:checked) > label:hover,
+            .rate:not(:checked) > label:hover ~ label {
+                color: #deb217;
+            }
+            .rate > input:checked + label:hover,
+            .rate > input:checked + label:hover ~ label,
+            .rate > input:checked ~ label:hover,
+            .rate > input:checked ~ label:hover ~ label,
+            .rate > label:hover ~ input:checked ~ label {
+                color: #c59b08;
+            }
+
+            @media (max-width: 1600px) {
+
+              :root {
+                  font-size: 19px;
+              }
+
+              body {
+                  margin: 115px 310px 0;
+                  padding-left:24px;
+                  padding-right: 24px;
+                  padding-top: 24px;
+                  padding-bottom: 28px;
+                  max-width: 100vh;
+                  min-height: auto;
+                  height: 100%;
+              }
+
+              input {
+                  font-weight: 500;
+                  font-size: 23px;
+                  width: 400px;
+                  border-bottom: 2px solid;
+                  padding: 3px 9px;
+                  margin: 39px 0;
+              }
+
+              button {
+                  font-size: 22px;
+                  border: 2.8px solid;
+                  padding: 6px 38px;
+                  border-radius: 9900px;
+              }
+
+              .rate {
+                  height: 45px;
+                  padding: 0 9.5px;
+              }
+              .rate:not(:checked) > label {
+                  font-size:29px;
+              }
+            }
+
+              @media (max-width: 1500px) {
+
+                :root {
+                    font-size: 18px;
+                }
+
+                body {
+                    margin: 110px 300px 0;
+                    padding-left:23px;
+                    padding-right: 23px;
+                    padding-top: 23px;
+                    padding-bottom: 26px;
+                    max-width: 100vh;
+                    min-height: auto;
+                    height: 100%;
+                }
+
+                input {
+                    font-weight: 495;
+                    font-size: 22px;
+                    width: 400px;
+                    border-bottom: 2px solid;
+                    padding: 3px 9px;
+                    margin: 39px 0;
+                }
+
+                button {
+                    font-size: 21px;
+                    border: 2.6px solid;
+                    padding: 5.8px 36px;
+                    border-radius: 9900px;
+                }
+
+                .rate {
+                    height: 43px;
+                    padding: 0 9.2px;
+                }
+                .rate:not(:checked) > label {
+                    font-size:28px;
+                }
+              }
+
+                @media (max-width: 1400px) {
+
+                  :root {
+                      font-size: 17px;
+                  }
+
+                  body {
+                      margin: 105px 290px 0;
+                      padding-left:22px;
+                      padding-right: 22px;
+                      padding-top: 22px;
+                      padding-bottom: 25px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 490;
+                      font-size: 21px;
+                      width: 400px;
+                      border-bottom: 1.8px solid;
+                      padding: 2.8px 8.5px;
+                      margin: 36px 0;
+                  }
+
+                  button {
+                      font-size: 20px;
+                      border: 2.5px solid;
+                      padding: 5.8px 36px;
+                      border-radius: 9800px;
+                  }
+
+                  .rate {
+                      height: 42px;
+                      padding: 0 9px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:27px;
+                  }
+                }
+
+                @media (max-width: 1300px) {
+
+                  :root {
+                      font-size: 16px;
+                  }
+
+                  body {
+                      margin: 100px 280px 0;
+                      padding-left:21px;
+                      padding-right: 21px;
+                      padding-top: 21px;
+                      padding-bottom: 24px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 488;
+                      font-size: 20px;
+                      width: 400px;
+                      border-bottom: 1.6px solid;
+                      padding: 2.6px 8.3px;
+                      margin: 34px 0;
+                  }
+
+                  button {
+                      font-size: 19px;
+                      border: 2.3px solid;
+                      padding: 5.5px 34px;
+                      border-radius: 9700px;
+                  }
+
+                  .rate {
+                      height: 40px;
+                      padding: 0 8.75px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:26px;
+                  }
+                }
+
+                @media (max-width: 1200px) {
+
+                  :root {
+                      font-size: 15px;
+                  }
+
+                  body {
+                      margin: 95px 250px 0;
+                      padding-left:20px;
+                      padding-right: 20px;
+                      padding-top: 20px;
+                      padding-bottom: 22px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 485;
+                      font-size: 19px;
+                      width: 400px;
+                      border-bottom: 1.5px solid;
+                      padding: 2.4px 8.2px;
+                      margin: 32px 0;
+                  }
+
+                  button {
+                      font-size: 18px;
+                      border: 2.2px solid;
+                      padding: 5.4px 32px;
+                      border-radius: 9600px;
+                  }
+
+                  .rate {
+                      height: 38px;
+                      padding: 0 8.7px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:26px;
+                  }
+                }
+
+                @media (max-width: 1100px) {
+
+                  :root {
+                      font-size: 14px;
+                  }
+
+                  body {
+                      margin: 90px 240px 0;
+                      padding-left:19px;
+                      padding-right: 19px;
+                      padding-top: 19px;
+                      padding-bottom: 20px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 480;
+                      font-size: 14px;
+                      width: 380px;
+                      border-bottom: 1.3px solid;
+                      padding: 2.2px 8px;
+                      margin: 30px 0;
+                  }
+
+                  button {
+                      font-size: 16px;
+                      border: 2px solid;
+                      padding: 5.2px 30px;
+                      border-radius: 9500px;
+                  }
+
+                  .rate {
+                      height: 36px;
+                      padding: 0 8.5px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:25px;
+                  }
+                }
+
+                @media (max-width: 1000px) {
+
+                  :root {
+                      font-size: 13px;
+                  }
+
+                  body {
+                      margin: 85px 220px 0;
+                      padding-left:18px;
+                      padding-right: 18px;
+                      padding-top: 18px;
+                      padding-bottom: 19px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 470;
+                      font-size: 12px;
+                      width: 300px;
+                      border-bottom: 1.2px solid;
+                      padding: 2px 7.8px;
+                      margin: 28px 0;
+                  }
+
+                  button {
+                      font-size: 15px;
+                      border: 1.9px solid;
+                      padding: 5.1px 28px;
+                      border-radius: 9400px;
+                  }
+
+                  .rate {
+                      height: 35px;
+                      padding: 0 8.4px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:24px;
+                  }
+                }
+
+                @media (max-width: 900px) {
+
+                  :root {
+                      font-size: 12px;
+                  }
+
+                  body {
+                      margin: 80px 200px 0;
+                      padding-left:16px;
+                      padding-right: 16px;
+                      padding-top: 16px;
+                      padding-bottom: 17px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 450;
+                      font-size: 11px;
+                      width: 250px;
+                      border-bottom: 1.1px solid;
+                      padding: 1.9px 7.6px;
+                      margin: 26px 0;
+                  }
+
+                  button {
+                      font-size: 14px;
+                      border: 1.8px solid;
+                      padding: 5px 26px;
+                      border-radius: 9300px;
+                  }
+
+                  .rate {
+                      height: 33px;
+                      padding: 0 8.2px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:24px;
+                  }
+                }
+
+                @media (max-width: 800px) {
+
+                  :root {
+                      font-size: 10px;
+                  }
+
+                  body {
+                      margin: 70px 180px 0;
+                      padding-left:14px;
+                      padding-right: 14px;
+                      padding-top: 10px;
+                      padding-bottom: 15px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 420;
+                      font-size: 14px;
+                      width: 220px;
+                      border-bottom: 1px solid;
+                      padding: 1.6px 7.3px;
+                      margin: 24px 0;
+                  }
+
+                  button {
+                      font-size: 12px;
+                      border: 1.6px solid;
+                      padding: 4px 22px;
+                      border-radius: 9000px;
+                  }
+
+                  .rate {
+                      height: 30px;
+                      padding: 0 8px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:22px;
+                  }
+                }
+
+                @media (max-width: 700px) {
+
+                  :root {
+                      font-size: 8px;
+                  }
+
+                  body {
+                      margin: 60px 155px 0;
+                      padding-left:12px;
+                      padding-right: 12px;
+                      padding-top: 12px;
+                      padding-bottom: 13px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 380;
+                      font-size: 9px;
+                      width: 180px;
+                      border-bottom: 0.9px solid;
+                      padding: 1.3px 7px;
+                      margin: 22px 0;
+                  }
+
+                  button {
+                      font-size: 10px;
+                      border: 1.3px solid;
+                      padding: 3.8px 20px;
+                      border-radius: 8800px;
+                  }
+
+                  .rate {
+                      height: 27px;
+                      padding: 0 7.8px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:18px;
+                  }
+                }
+
+                @media (max-width: 600px) {
+
+                  :root {
+                      font-size: 7px;
+                  }
+
+                  body {
+                      margin: 50px 140px 0;
+                      padding-left:11px;
+                      padding-right: 11px;
+                      padding-top: 11px;
+                      padding-bottom: 12px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 350;
+                      font-size: 8px;
+                      width: 150px;
+                      border-bottom: 0.7px solid;
+                      padding: 1.1px 6.8px;
+                      margin: 20px 0;
+                  }
+
+                  button {
+                      font-size: 9px;
+                      border: 1.2px solid;
+                      padding: 3.6px 20px;
+                      border-radius: 8500px;
+                  }
+
+                  .rate {
+                      height: 24px;
+                      padding: 0 7.6px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:16px;
+                  }
+                }
+
+                @media (max-width: 500px) {
+
+                  :root {
+                      font-size: 6px;
+                  }
+
+                  body {
+                      margin: 40px 120px 0;
+                      padding-left:10px;
+                      padding-right: 10px;
+                      padding-top: 10px;
+                      padding-bottom: 11px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 330;
+                      font-size: 7px;
+                      width: 130px;
+                      border-bottom: 0.6px solid;
+                      padding: 1px 6.6px;
+                      margin: 18px 0;
+                  }
+
+                  button {
+                      font-size: 8.5px;
+                      border: 1px solid;
+                      padding: 3.3px 18px;
+                      border-radius: 8000px;
+                  }
+
+                  .rate {
+                      height: 20px;
+                      padding: 0 7px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:14px;
+                  }
+                }
+
+                @media (max-width: 400px) {
+
+                  :root {
+                      font-size: 4px;
+                  }
+
+                  body {
+                      margin: 30px 100px 0;
+                      padding-left:8px;
+                      padding-right:8px;
+                      padding-top: 8px;
+                      padding-bottom: 9px;
+                      max-width: 100vh;
+                      min-height: auto;
+                      height: 100%;
+                  }
+
+                  input {
+                      font-weight: 300;
+                      font-size: 6px;
+                      width: 100px;
+                      border-bottom: 0.4px solid;
+                      padding: 0.8px 6px;
+                      margin: 15px 0;
+                  }
+
+                  button {
+                      font-size: 8px;
+                      border: 0.8px solid;
+                      padding: 3px 15px;
+                      border-radius: 7000px;
+                  }
+
+                  .rate {
+                      height: 18px;
+                      padding: 0 5px;
+                  }
+                  .rate:not(:checked) > label {
+                      font-size:14px;
+                  }
+                }
+
+        </style>
+    </head>
+    <body>
+        <h1>Please Leave Us A Feedback!</h1>
+        <form action="" method="post" id="review" autocomplete="off">
+            <input type="email" name="email" placeholder="Email ID" required email>
+            <input type="text" name="Fname" placeholder="First Name" required>
+            <input type="text" name="Lname" placeholder="Last Name" required>
+            <h2>Please Rate Out of 5</h2>
+            <div class="rate" class="container">
+              <input type="radio" id="star5" name="rate" value="5"  />
+              <label for="star5" title="text">5 stars</label>
+              <input type="radio" id="star4" name="rate" value="4" />
+              <label for="star4" title="text">4 stars</label>
+              <input type="radio" id="star3" name="rate" value="3" />
+              <label for="star3" title="text">3 stars</label>
+              <input type="radio" id="star2" name="rate" value="2" />
+              <label for="star2" title="text">2 stars</label>
+              <input type="radio" id="star1" name="rate" value="1" />
+              <label for="star1" title="text">1 star</label>
+            </div>
+              <br>
+              <input type="" name="reviewText" placeholder="Please type your review here." size="5" required/>
+            <button type="submit" name="button">Submit</button>
+        </form>
+    </body>
+</html>
